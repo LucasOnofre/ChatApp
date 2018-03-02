@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="larguraLogo">200dp</dimen>
+    <dimen name="alturaLogo">163dp</dimen>
+    <dimen name="validador_tamanho">15sp</dimen>
+</resources>
