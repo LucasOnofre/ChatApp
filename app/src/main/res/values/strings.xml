@@ -2,4 +2,6 @@
     <string name="app_name">WhatsApp</string>
     <string name="botao_cadastrar">Cadastrar</string>
     <string name="validacao">Validação</string>
+    <string name="botao_logar">Logar</string>
+    <string name="bota_cadastra">Cadastrar</string>
 </resources>

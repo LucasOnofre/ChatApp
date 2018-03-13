@@ -7,20 +7,6 @@
     android:background="@color/colorPrimary"
     tools:context="lucas.br.whatsapp.activity.LoginActivity">
 
-    <EditText
-        android:id="@+id/campoNumAreaId"
-        android:layout_width="45dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="11"
-        android:inputType="number"
-        android:textColor="@color/textColorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/campoNumPaisId"
-        app:layout_constraintStart_toEndOf="@+id/campoNumPaisId"
-        app:layout_constraintTop_toTopOf="@+id/campoNumPaisId" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="@dimen/larguraLogo"
@@ -34,63 +20,65 @@
         app:srcCompat="@drawable/logo" />
 
     <EditText
-        android:id="@+id/campoNomeId"
-        android:layout_width="0dp"
+        android:id="@+id/campoEmailId"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="Digite seu nome"
-        android:inputType="textPersonName"
-        android:textColor="@color/textColorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:hint="Digite seu e-mail"
+        android:inputType="textEmailAddress"
+        android:singleLine="false"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/campoNumPaisId"
-        android:layout_width="45dp"
+        android:id="@+id/campoSenhaId"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/campoNumAreaId"
-        android:layout_alignBottom="@+id/campoNumAreaId"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
         android:ems="10"
-        android:hint="+55"
-        android:inputType="number"
-        android:textColor="@color/textColorPrimary"
-        app:layout_constraintStart_toStartOf="@+id/campoNomeId"
-        app:layout_constraintTop_toBottomOf="@+id/campoNomeId" />
-
-    <EditText
-        android:id="@+id/campoNumeroTelId"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnCadastrar"
-        android:layout_alignEnd="@+id/btnCadastrar"
-        android:ems="10"
-        android:hint="Telefone"
-        android:inputType="number"
-        android:textColor="@color/textColorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/campoNumAreaId"
-        app:layout_constraintEnd_toEndOf="@+id/campoNomeId"
-        app:layout_constraintStart_toEndOf="@+id/campoNumAreaId"
-        app:layout_constraintTop_toTopOf="@+id/campoNumAreaId" />
+        android:hint="Digite sua senha"
+        android:inputType="textPassword"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        app:layout_constraintEnd_toEndOf="@+id/campoEmailId"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="@+id/campoEmailId"
+        app:layout_constraintTop_toBottomOf="@+id/campoEmailId" />
 
     <Button
-        android:id="@+id/btnCadastrar"
-        android:layout_width="354dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/campoNumPaisId"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="384dp"
+        android:id="@+id/btnLogarId"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
         android:background="@color/colorPrimaryDark"
-        android:text="@string/botao_cadastrar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/botao_logar"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        app:layout_constraintEnd_toEndOf="@+id/campoSenhaId"
+        app:layout_constraintStart_toStartOf="@+id/campoSenhaId"
+        app:layout_constraintTop_toBottomOf="@+id/campoSenhaId" />
+
+    <TextView
+        android:id="@+id/naoTemCadastroId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:onClick="listener_cadastroUsuario"
+        android:padding="5dp"
+        android:text="Não tem uma conta? Cadastre-se"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/btnLogarId"
+        app:layout_constraintStart_toStartOf="@+id/btnLogarId"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogarId" />
 
 </android.support.constraint.ConstraintLayout>

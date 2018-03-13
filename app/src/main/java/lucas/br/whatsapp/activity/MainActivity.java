@@ -7,10 +7,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import lucas.br.whatsapp.R;
+import lucas.br.whatsapp.config.ConfiguracaoFirebase;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DatabaseReference referenciaFirebase = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference referenciaFirebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
