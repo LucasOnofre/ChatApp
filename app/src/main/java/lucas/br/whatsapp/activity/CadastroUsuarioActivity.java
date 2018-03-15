@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import lucas.br.whatsapp.R;
+import lucas.br.whatsapp.model.Usuario;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
 
@@ -14,6 +15,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     private EditText campoEmail;
     private EditText campoSenha;
     private Button   btnCadastrao;
+    private Usuario  usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,16 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
 
+            usuario = new Usuario();
+            usuario.setNome (campoNome.getText().toString());
+            usuario.setEmail(campoEmail.getText().toString());
+            usuario.setSenha (campoSenha.getText().toString());
+            cadadastrarUsuario();
         }
     };
+
+    private void cadadastrarUsuario() {
+
+
+    }
 }

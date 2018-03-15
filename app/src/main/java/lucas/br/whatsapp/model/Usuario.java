@@ -4,17 +4,16 @@ package lucas.br.whatsapp.model;
  * Created by Lucas on 13/03/2018.
  */
 
-public class usuario {
+public class Usuario {
 
+
+    private String id;
     private String nome;
     private String email;
     private String senha;
 
-    public usuario(String nome, String email, String senha) {
-        
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
+    public Usuario() {
+
     }
 
     public String getNome() {
@@ -39,5 +38,13 @@ public class usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
