@@ -10,9 +10,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public final class ConfiguracaoFirebase {
 
-    private static  DatabaseReference referenciaFirebase;
-    private static FirebaseAuth autenticacao;
-
+    private static  FirebaseAuth        autenticacao;
+    private static  DatabaseReference   referenciaFirebase;
 
     public static DatabaseReference getFirebase() {
 
