@@ -1,5 +1,10 @@
 package lucas.br.whatsapp.model;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
+
+import lucas.br.whatsapp.config.ConfiguracaoFirebase;
+
 /**
  * Created by Lucas on 13/03/2018.
  */
@@ -32,6 +37,7 @@ public class Usuario {
         this.email = email;
     }
 
+    @Exclude
     public String getSenha() {
         return senha;
     }
@@ -46,5 +52,11 @@ public class Usuario {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void salvar() {
+
+        DatabaseReference referenciaFirebase = ConfiguracaoFirebase.getFirebase();
+        referenciaFirebase.child("Usuários").child(getNome()).setValue(this);
     }
 }

@@ -12,7 +12,6 @@ import lucas.br.whatsapp.config.ConfiguracaoFirebase;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private DatabaseReference referenciaFirebase;
 
 
     @Override
@@ -20,8 +19,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        referenciaFirebase = ConfiguracaoFirebase.getFirebase();
-        referenciaFirebase.child("Pontos").setValue("800");
     }
 
     public void listener_cadastroUsuario(View view){
