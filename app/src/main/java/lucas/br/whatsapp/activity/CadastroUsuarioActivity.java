@@ -25,12 +25,12 @@ import lucas.br.whatsapp.model.Usuario;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
 
-    private EditText campoNome;
-    private EditText campoEmail;
-    private EditText campoSenha;
-    private Button   btnCadastrao;
+    private Usuario      usuario;
+    private EditText     campoNome;
+    private EditText     campoEmail;
+    private EditText     campoSenha;
+    private Button       btnCadastrao;
     private FirebaseAuth autenticacao;
-    private Usuario  usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

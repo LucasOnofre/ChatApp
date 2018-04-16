@@ -6,15 +6,7 @@
     android:layout_height="match_parent"
     tools:context="lucas.br.whatsapp.activity.MainActivity">
 
-    <Button
-        android:id="@+id/btn_sair"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="136dp"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="16dp"
-        android:text="Sair"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <include android:id="@+id/toolbarPrincipal"
+        layout="@layout/toolbar"/>
+
 </android.support.constraint.ConstraintLayout>
