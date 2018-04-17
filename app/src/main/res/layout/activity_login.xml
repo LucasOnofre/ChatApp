@@ -35,21 +35,34 @@
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <EditText
-        android:id="@+id/campoSenhaId"
-        android:layout_width="fill_parent"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:hint="Digite sua senha"
-        android:inputType="textPassword"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:layout_marginTop="14dp"
         app:layout_constraintEnd_toEndOf="@+id/campoEmailId"
-        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="@+id/campoEmailId"
-        app:layout_constraintTop_toBottomOf="@+id/campoEmailId" />
+        app:layout_constraintTop_toBottomOf="@+id/campoEmailId"
+        app:passwordToggleEnabled="true">
+
+
+        <EditText
+            android:id="@+id/campoSenhaId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:ems="10"
+            android:hint="Digite sua senha"
+            android:inputType="textPassword"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            app:layout_constraintEnd_toEndOf="@+id/campoEmailId"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/btnLogarId"
@@ -61,9 +74,10 @@
         android:background="@color/colorPrimaryDark"
         android:text="@string/botao_logar"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
-        app:layout_constraintEnd_toEndOf="@+id/campoSenhaId"
-        app:layout_constraintStart_toStartOf="@+id/campoSenhaId"
-        app:layout_constraintTop_toBottomOf="@+id/campoSenhaId" />
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        android:theme="@style/botaoPadrao"/>
 
     <TextView
         android:id="@+id/naoTemCadastroId"
