@@ -42,7 +42,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         campoSenha   = findViewById(R.id.campoCadastroSenhaId);
         campoEmail   = findViewById(R.id.campoCadastroEmailId);
 
-    btnCadastrao.setOnClickListener(listener_cadastro);
+         btnCadastrao.setOnClickListener(listener_cadastro);
+
     }
 
     public View.OnClickListener listener_cadastro = new View.OnClickListener() {
@@ -50,8 +51,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         public void onClick(View view) {
 
             usuario = new Usuario();
-            usuario.setNome (campoNome.getText().toString());
-            usuario.setEmail(campoEmail.getText().toString());
+            usuario.setNome  (campoNome.getText().toString());
+            usuario.setEmail (campoEmail.getText().toString());
             usuario.setSenha (campoSenha.getText().toString());
             cadadastrarUsuario();
         }

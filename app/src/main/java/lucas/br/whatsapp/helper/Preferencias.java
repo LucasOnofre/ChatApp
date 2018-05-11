@@ -13,14 +13,14 @@ public class Preferencias {
 
     private Context contexto;
     private SharedPreferences preferences;
-    private final String NOME_ARQUIVO = "whatsapp.preferencias";
     private int MODE = 0;
+    private final String NOME_ARQUIVO = "whatsapp.preferencias";
 
     private SharedPreferences.Editor editor;
 
     private String CHAVE_NOME       = "nome";
-    private String CHAVE_TELEFONE   = "telefone";
     private String CHAVE_TOKEN      = "token";
+    private String CHAVE_TELEFONE   = "telefone";
 
     public Preferencias(Context contextoParametro){
 
@@ -41,9 +41,9 @@ public class Preferencias {
 
     public HashMap<String,String> getDadosUsuario(){
         HashMap<String,String> dadosUsuario = new HashMap<>();
-        dadosUsuario.put(CHAVE_NOME,preferences.getString(CHAVE_NOME,null));
+        dadosUsuario.put(CHAVE_NOME,preferences    .getString(CHAVE_NOME,null));
         dadosUsuario.put(CHAVE_TELEFONE,preferences.getString(CHAVE_TELEFONE,null));
-        dadosUsuario.put(CHAVE_TOKEN,preferences.getString(CHAVE_TOKEN,null));
+        dadosUsuario.put(CHAVE_TOKEN,preferences   .getString(CHAVE_TOKEN,null));
         return dadosUsuario;
     }
 }

@@ -1,6 +1,8 @@
 package lucas.br.whatsapp.activity;
+
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,10 +19,11 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.database.DatabaseReference;
 
+import java.util.HashMap;
+
 import lucas.br.whatsapp.R;
 import lucas.br.whatsapp.config.ConfiguracaoFirebase;
 import lucas.br.whatsapp.model.Usuario;
-
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -54,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
             usuario.setEmail( emailLogin.getText().toString());
             usuario.setSenha( senhaLogin.getText().toString());
             validarLogin();
+
 
         }
     };
@@ -96,6 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                         erroExcessao = "Erro ao efetuar o cadastro";
                         e.printStackTrace();
                     }
+
                     Toast.makeText(LoginActivity.this, "Erro" + erroExcessao, Toast.LENGTH_SHORT).show();
                 }
             }

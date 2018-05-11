@@ -6,7 +6,25 @@
     android:layout_height="match_parent"
     tools:context="lucas.br.whatsapp.activity.MainActivity">
 
-    <include android:id="@+id/toolbarPrincipal"
+    <include
+        android:id="@+id/toolbarPrincipal"
         layout="@layout/toolbar"/>
 
+    <lucas.br.whatsapp.helper.SlidingTabLayout
+        android:id="@+id/stl_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/toolbarPrincipal">
+
+    </lucas.br.whatsapp.helper.SlidingTabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_pagina"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+
+        app:layout_constraintTop_toBottomOf="@id/stl_tabs" />
 </android.support.constraint.ConstraintLayout>
