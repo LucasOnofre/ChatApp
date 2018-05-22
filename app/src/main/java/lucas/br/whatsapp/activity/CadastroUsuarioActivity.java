@@ -1,8 +1,10 @@
 package lucas.br.whatsapp.activity;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +23,7 @@ import com.google.firebase.database.Exclude;
 
 import lucas.br.whatsapp.R;
 import lucas.br.whatsapp.config.ConfiguracaoFirebase;
+import lucas.br.whatsapp.helper.Base64Custom;
 import lucas.br.whatsapp.model.Usuario;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
@@ -54,49 +57,56 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             usuario.setNome  (campoNome.getText().toString());
             usuario.setEmail (campoEmail.getText().toString());
             usuario.setSenha (campoSenha.getText().toString());
-            cadadastrarUsuario();
+            cadastrarUsuario();
         }
     };
 
-    private void cadadastrarUsuario() {
+    private void cadastrarUsuario(){
 
         autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
-        autenticacao.createUserWithEmailAndPassword(usuario.getEmail(),usuario.getSenha())
-                .addOnCompleteListener(CadastroUsuarioActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(CadastroUsuarioActivity.this, "Usuário cadastrado com sucesso",
-                                    Toast.LENGTH_SHORT).show();
+        autenticacao.createUserWithEmailAndPassword(
+                usuario.getEmail(),
+                usuario.getSenha()
+        ).addOnCompleteListener(CadastroUsuarioActivity.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            FirebaseUser usuarioFirebase = task.getResult().getUser();
-                            usuario.setId(usuarioFirebase.getUid());
-                            usuario.salvar();
+                if( task.isSuccessful() ){
 
-                            autenticacao.signOut();
-                            finish();
+                    Toast.makeText(CadastroUsuarioActivity.this, "Sucesso ao cadastrar usuário", Toast.LENGTH_LONG ).show();
 
-                        } else {
-                            String erroExcessao = "";
+                    String identificadorUsuario = Base64Custom.codificarBase64( usuario.getEmail() );
+                    usuario.setId( identificadorUsuario );
+                    usuario.salvar();
 
-                            try {
-                                throw task.getException();
+                    abrirLoginUsuario();
 
-                            } catch (FirebaseAuthWeakPasswordException e) {
-                                erroExcessao = "Digite uma senha mais forte, contento mais caracteres e com letras e números";
+                }else{
 
-                            } catch (FirebaseAuthInvalidCredentialsException e) {
-                                erroExcessao = "Email digitado é inválido";
-
-                            } catch (FirebaseAuthUserCollisionException e) {
-                                erroExcessao = "Esse Email já está em uso no App";
-
-                            } catch (Exception e) {
-                                erroExcessao = "Erro ao efetuar o cadastro";
-                                e.printStackTrace();
-                            }
-                            Toast.makeText(CadastroUsuarioActivity.this, "Erro " + erroExcessao, Toast.LENGTH_SHORT).show();
-                        }
+                    String erro = "";
+                    try{
+                        throw task.getException();
+                    } catch (FirebaseAuthWeakPasswordException e) {
+                        erro = "Escolha uma senha que contenha, letras e números.";
+                    } catch (FirebaseAuthInvalidCredentialsException e) {
+                        erro = "Email indicado não é válido.";
+                    } catch (FirebaseAuthUserCollisionException e) {
+                        erro = "Já existe uma conta com esse e-mail.";
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                });
-    }    }
+
+                    Toast.makeText(CadastroUsuarioActivity.this, "Erro ao cadastrar usuário: " + erro, Toast.LENGTH_LONG ).show();
+                }
+
+            }
+        });
+
+    }
+
+    private void abrirLoginUsuario() {
+        Intent intent = new Intent(CadastroUsuarioActivity.this,LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+}

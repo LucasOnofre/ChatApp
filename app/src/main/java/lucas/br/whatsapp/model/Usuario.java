@@ -5,20 +5,29 @@ import com.google.firebase.database.Exclude;
 
 import lucas.br.whatsapp.config.ConfiguracaoFirebase;
 
-/**
- * Created by Lucas on 13/03/2018.
- */
-
 public class Usuario {
-
 
     private String id;
     private String nome;
     private String email;
     private String senha;
 
-    public Usuario() {
+    public Usuario(){
 
+    }
+
+    public void salvar(){
+        DatabaseReference referenciaFirebase = ConfiguracaoFirebase.getFirebase();
+        referenciaFirebase.child("Users").child( getId() ).setValue( this );
+    }
+
+    @Exclude
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -44,19 +53,5 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void salvar() {
-
-        DatabaseReference referenciaFirebase = ConfiguracaoFirebase.getFirebase();
-        referenciaFirebase.child("Usuários").child(getId()).setValue(this);
     }
 }
