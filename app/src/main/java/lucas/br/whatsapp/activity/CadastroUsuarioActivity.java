@@ -24,6 +24,7 @@ import com.google.firebase.database.Exclude;
 import lucas.br.whatsapp.R;
 import lucas.br.whatsapp.config.ConfiguracaoFirebase;
 import lucas.br.whatsapp.helper.Base64Custom;
+import lucas.br.whatsapp.helper.Preferencias;
 import lucas.br.whatsapp.model.Usuario;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
@@ -75,9 +76,15 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
                     Toast.makeText(CadastroUsuarioActivity.this, "Sucesso ao cadastrar usuário", Toast.LENGTH_LONG ).show();
 
+
+
                     String identificadorUsuario = Base64Custom.codificarBase64( usuario.getEmail() );
                     usuario.setId( identificadorUsuario );
                     usuario.salvar();
+
+                    //salva o email do usuário nas preferencias
+                    Preferencias preferencias = new Preferencias(CadastroUsuarioActivity.this);
+                    preferencias.salvarDados(identificadorUsuario);
 
                     abrirLoginUsuario();
 

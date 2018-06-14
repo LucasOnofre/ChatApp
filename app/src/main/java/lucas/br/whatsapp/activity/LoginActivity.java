@@ -23,6 +23,8 @@ import java.util.HashMap;
 
 import lucas.br.whatsapp.R;
 import lucas.br.whatsapp.config.ConfiguracaoFirebase;
+import lucas.br.whatsapp.helper.Base64Custom;
+import lucas.br.whatsapp.helper.Preferencias;
 import lucas.br.whatsapp.model.Usuario;
 
 public class LoginActivity extends AppCompatActivity {
@@ -78,6 +80,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+
+                    //salva o email do usuário nas preferencias
+                    Preferencias preferencias = new Preferencias(LoginActivity.this);
+                    String identificadorUsuarioLogado = Base64Custom.codificarBase64(usuario.getEmail());
+                    preferencias.salvarDados(identificadorUsuarioLogado);
+
                     abreTelaPrincipal();
                     Toast.makeText(LoginActivity.this, "Sucesso", Toast.LENGTH_SHORT).show();
 
@@ -91,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                         erroExcessao = "Digite uma senha mais forte, contento mais caracteres e com letras e números";
 
                     } catch (FirebaseAuthInvalidCredentialsException e) {
-                        erroExcessao = "Email digitado é inválido";
+                        erroExcessao = " Email digitado é inválido";
 
                     } catch (FirebaseAuthUserCollisionException e) {
                         erroExcessao = "Esse Email já está em uso no App";
@@ -101,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    Toast.makeText(LoginActivity.this, "Erro" + erroExcessao, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "" + erroExcessao, Toast.LENGTH_SHORT).show();
                 }
             }
         });

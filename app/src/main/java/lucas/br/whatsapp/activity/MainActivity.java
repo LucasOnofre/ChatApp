@@ -15,24 +15,34 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import lucas.br.whatsapp.R;
 import lucas.br.whatsapp.adapter.TabAdapter;
 import lucas.br.whatsapp.config.ConfiguracaoFirebase;
+import lucas.br.whatsapp.helper.Base64Custom;
+import lucas.br.whatsapp.helper.Preferencias;
 import lucas.br.whatsapp.helper.SlidingTabLayout;
+import lucas.br.whatsapp.model.Contato;
 import lucas.br.whatsapp.model.Usuario;
 
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar          toolbar;
     private ViewPager        viewPager;
-    private FirebaseAuth     usuarioAutenticacao;
     private SlidingTabLayout slidingTabLayout;
+    private DatabaseReference referenciaDatabase;
+    private FirebaseAuth     usuarioAutenticacao;
+    private String           identificadorContato;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,18 +105,69 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.setMessage("E-mail do usuário");
         alertDialog.setCancelable(false);
 
-        EditText editText = new EditText(MainActivity.this);
+        final EditText editText = new EditText(MainActivity.this);
         alertDialog.setView(editText);
 
         alertDialog.setPositiveButton("Cadastrar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
+                String emailContato = editText.getText().toString();
+
+
+                //valida se foi escrito algo
+                if (emailContato.isEmpty()){
+                    Toast.makeText(MainActivity.this, "Preecha o e-mail corretamente", Toast.LENGTH_SHORT).show();
+
+                    //verifica se o Email ja está cadastrado no firebase
+                }else{
+                    identificadorContato = Base64Custom.codificarBase64(emailContato);
+
+                    //recuperar instancia firebase
+                    referenciaDatabase = ConfiguracaoFirebase.getFirebase();
+                    referenciaDatabase = referenciaDatabase.child("Users").child(identificadorContato);
+
+                    referenciaDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            if (dataSnapshot.getValue() != null){
+                                Usuario usuarioContato = dataSnapshot.getValue(Usuario.class);
+
+                                Preferencias preferencias         = new Preferencias(MainActivity.this);
+                                String identificadorUsuarioLogado = preferencias.getIdentificador();
+
+                                referenciaDatabase = ConfiguracaoFirebase.getFirebase();
+                                referenciaDatabase = referenciaDatabase.child("Contatos")
+                                                                       .child(identificadorUsuarioLogado)
+                                                                       .child(identificadorContato);
+
+                                Contato contato = new Contato();
+                                contato.setIdentificadorUsuario(identificadorContato);
+                                contato.setEmail(usuarioContato.getEmail());
+                                contato.setNome(usuarioContato.getNome());
+                                referenciaDatabase.setValue(contato);
+
+                            }else{
+                                Toast.makeText(MainActivity.this, "Usuário não possui cadastro", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+                }
+
             }
         });
         alertDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
 
             }
         });
