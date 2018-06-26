@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
 import lucas.br.whatsapp.R;
@@ -84,7 +85,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
                     //salva o email do usuário nas preferencias
                     Preferencias preferencias = new Preferencias(CadastroUsuarioActivity.this);
-                    preferencias.salvarDados(identificadorUsuario);
+                    preferencias.salvarDados(identificadorUsuario,usuario.getNome());
 
                     abrirLoginUsuario();
 

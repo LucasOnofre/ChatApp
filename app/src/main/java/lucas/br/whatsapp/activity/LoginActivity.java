@@ -17,7 +17,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -34,6 +37,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText     emailLogin;
     private EditText     senhaLogin;
     private FirebaseAuth autenticacao;
+    private DatabaseReference firebase;
+    private ValueEventListener valueEventListener;
+    private String identificadorUsuarioLogado;
 
 
     @Override
@@ -79,12 +85,35 @@ public class LoginActivity extends AppCompatActivity {
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 if (task.isSuccessful()) {
 
                     //salva o email do usuário nas preferencias
                     Preferencias preferencias = new Preferencias(LoginActivity.this);
-                    String identificadorUsuarioLogado = Base64Custom.codificarBase64(usuario.getEmail());
-                    preferencias.salvarDados(identificadorUsuarioLogado);
+                    identificadorUsuarioLogado = Base64Custom.codificarBase64(usuario.getEmail());
+
+                    firebase = ConfiguracaoFirebase.getFirebase().child("Users").child(identificadorUsuarioLogado);
+
+                    valueEventListener = new ValueEventListener() {
+
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            Usuario usuarioRecuperado = dataSnapshot.getValue(Usuario.class);
+
+                            Preferencias preferencias = new Preferencias(LoginActivity.this);
+                            preferencias.salvarDados(identificadorUsuarioLogado,usuarioRecuperado.getNome());
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    };
+
+                    firebase.addListenerForSingleValueEvent(valueEventListener);
+
+
 
                     abreTelaPrincipal();
                     Toast.makeText(LoginActivity.this, "Sucesso", Toast.LENGTH_SHORT).show();
