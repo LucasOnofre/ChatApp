@@ -25,7 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import lucas.br.whatsapp.R;
 import lucas.br.whatsapp.adapter.TabAdapter;
 import lucas.br.whatsapp.config.ConfiguracaoFirebase;
 import lucas.br.whatsapp.helper.Base64Custom;
@@ -33,6 +32,7 @@ import lucas.br.whatsapp.helper.Preferencias;
 import lucas.br.whatsapp.helper.SlidingTabLayout;
 import lucas.br.whatsapp.model.Contato;
 import lucas.br.whatsapp.model.Usuario;
+import whatsapp.cursoandroid.com.whatsapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         usuarioAutenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
 
-        toolbar = findViewById(R.id.toolbarPrincipal);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("WhatsApp");
         setSupportActionBar(toolbar);
 
@@ -80,17 +80,17 @@ public class MainActivity extends AppCompatActivity {
         int itemId = item.getItemId();
 
         switch (itemId){
-            case R.id.menu_sair:
+            case R.id.item_sair:
                 deslogarUsuario();
                 return true;
 
-            case R.id.menu_settings:
+            case R.id.item_configuracoes:
                 return true;
 
-            case R.id.menu_pesquisar:
+            case R.id.item_pesquisa:
                 return true;
 
-            case R.id.menu_adicionar:
+            case R.id.item_adicionar:
                 abrirCadastroContato();
                 return true;
             default:

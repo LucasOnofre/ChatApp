@@ -18,13 +18,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import lucas.br.whatsapp.R;
 import lucas.br.whatsapp.adapter.MensagensAdapter;
 import lucas.br.whatsapp.config.ConfiguracaoFirebase;
 import lucas.br.whatsapp.helper.Base64Custom;
 import lucas.br.whatsapp.helper.Preferencias;
 import lucas.br.whatsapp.model.Conversa;
 import lucas.br.whatsapp.model.Mensagem;
+import whatsapp.cursoandroid.com.whatsapp.R;
 
 public class ConversaActivity extends AppCompatActivity {
 
@@ -52,7 +52,7 @@ public class ConversaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversa);
 
-        toolbar          = findViewById(R.id.toolbar_conversa);
+        toolbar          = findViewById(R.id.tb_conversa);
         btn_enviar       = findViewById(R.id.bt_enviar);
         espaco_mensagem  = findViewById(R.id.edit_mensagem);
         lista_mensagens  = findViewById(R.id.lv_conversas);

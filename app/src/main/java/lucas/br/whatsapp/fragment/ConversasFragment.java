@@ -10,21 +10,18 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-
-import lucas.br.whatsapp.R;
 import lucas.br.whatsapp.activity.ConversaActivity;
 import lucas.br.whatsapp.adapter.ConversaAdapter;
 import lucas.br.whatsapp.config.ConfiguracaoFirebase;
 import lucas.br.whatsapp.helper.Base64Custom;
 import lucas.br.whatsapp.helper.Preferencias;
 import lucas.br.whatsapp.model.Conversa;
+import whatsapp.cursoandroid.com.whatsapp.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,7 +48,7 @@ public class ConversasFragment extends Fragment {
 
         // Monta listview e adapter
         conversas = new ArrayList<>();
-        listView = (ListView) view.findViewById(R.id.conversas_list_id);
+        listView = (ListView) view.findViewById(R.id.lv_conversas);
         adapter = new ConversaAdapter(getActivity(), conversas );
         listView.setAdapter( adapter );
 

@@ -6,11 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
-import lucas.br.whatsapp.R;
 import lucas.br.whatsapp.model.Contato;
+import whatsapp.cursoandroid.com.whatsapp.R;
 
 public class ContatosAdapter extends BaseAdapter {
 
@@ -49,10 +47,10 @@ public class ContatosAdapter extends BaseAdapter {
             Contato contato = items.get(position);
             view = inflater.inflate(R.layout.lista_contato,parent,false);
 
-            TextView nomeContato = view.findViewById(R.id.contato_nome);
+            TextView nomeContato = view.findViewById(R.id.tv_nome);
             nomeContato.setText(contato.getNome());
 
-            TextView emailContato = view.findViewById(R.id.contato_email);
+            TextView emailContato = view.findViewById(R.id.tv_email);
             emailContato.setText(contato.getEmail());
         }
 

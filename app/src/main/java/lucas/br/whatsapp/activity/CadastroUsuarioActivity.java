@@ -18,15 +18,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Exclude;
 
-import lucas.br.whatsapp.R;
 import lucas.br.whatsapp.config.ConfiguracaoFirebase;
 import lucas.br.whatsapp.helper.Base64Custom;
 import lucas.br.whatsapp.helper.Preferencias;
 import lucas.br.whatsapp.model.Usuario;
+import whatsapp.cursoandroid.com.whatsapp.R;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
 
@@ -42,10 +39,10 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_usuario);
 
-        btnCadastrao = findViewById(R.id.btnCadastrarId);
-        campoNome    = findViewById(R.id.campoCadastroNomeId);
-        campoSenha   = findViewById(R.id.campoCadastroSenhaId);
-        campoEmail   = findViewById(R.id.campoCadastroEmailId);
+        btnCadastrao = findViewById(R.id.bt_cadastrar);
+        campoNome    = findViewById(R.id.edit_cadastro_nome);
+        campoSenha   = findViewById(R.id.edit_cadastro_senha);
+        campoEmail   = findViewById(R.id.edit_cadastro_email);
 
          btnCadastrao.setOnClickListener(listener_cadastro);
 

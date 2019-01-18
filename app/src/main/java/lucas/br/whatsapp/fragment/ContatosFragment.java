@@ -15,16 +15,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-
-import lucas.br.whatsapp.R;
 import lucas.br.whatsapp.activity.ConversaActivity;
-import lucas.br.whatsapp.activity.MainActivity;
 import lucas.br.whatsapp.adapter.ContatosAdapter;
 import lucas.br.whatsapp.config.ConfiguracaoFirebase;
 import lucas.br.whatsapp.helper.Preferencias;
 import lucas.br.whatsapp.model.Contato;
+import whatsapp.cursoandroid.com.whatsapp.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -86,7 +83,7 @@ public class ContatosFragment extends Fragment {
                };
 
                contatos  = new ArrayList<>();
-               listView  = view.findViewById(R.id.contatos_list_id);
+               listView  = view.findViewById(R.id.lv_contatos);
                adapter   = new ContatosAdapter(getActivity(),contatos);
                listView.setAdapter(adapter);
 

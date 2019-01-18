@@ -10,11 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import lucas.br.whatsapp.R;
 import lucas.br.whatsapp.helper.Preferencias;
 import lucas.br.whatsapp.model.Mensagem;
+import whatsapp.cursoandroid.com.whatsapp.R;
 
 public class MensagensAdapter extends ArrayAdapter <Mensagem> {
 
@@ -52,7 +50,7 @@ public class MensagensAdapter extends ArrayAdapter <Mensagem> {
             }
 
 
-            TextView textoMensagem = view.findViewById(R.id.left_mensagem);
+            TextView textoMensagem = view.findViewById(R.id.tv_mensagem);
             textoMensagem.setText(mensagem.getMensage());
         }
 
